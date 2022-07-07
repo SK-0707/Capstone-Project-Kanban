@@ -1,0 +1,90 @@
+version: "3.5"
+services:
+  mysqlservice:
+    image: mysql:5.5
+    ports:
+      - 3306:3306
+    container_name: mysql-container
+    network_mode: host
+    hostname: localhost
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USERNAME: user
+      MYSQL_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
+  mongodbservice:
+    image: mongo:latest
+    container_name: mongo-container
+    network_mode: host
+    hostname: localhost
+    ports:
+      - 27017:27017
+
+  userauthenticationservice:
+    container_name: user-authentication-service
+    build: UserAuthenticationService/
+    hostname: localhost
+    network_mode: host
+    ports:
+      - 8084:8084
+    depends_on:
+      - mysqlservice
+      - eurekaServer
+      - cloudapiservice
+    restart: always
+
+  kanbanservice:
+    container_name: kanban-service
+    build: kanbanService/
+    hostname: localhost
+    network_mode: host
+    ports:
+      - 9005:9005
+    depends_on:
+      - mongodbservice
+      - eurekaServer
+      - springcloudapigateway
+    restart: always
+
+  springcloudapigateway:
+    image: cloud-api-service
+    build: SpringCloudAPIGateway/
+    restart: always
+    network_mode: host
+    #hostname: localhost
+    ports:
+      - 9000:9000
+    environment:
+      API_GATEWAY_PORT: 9000
+      EUREKA_SERVER_IP: localhost
+      EUREKA_SERVER_PORT: 8761
+    depends_on:
+      - eurekaServer
+
+
+  eurekaServer:
+    image: eureka-service
+    build: EurekaServer/
+    restart: always
+    network_mode: host
+    #hostname: localhost
+    environment:
+      EUREKA_SERVER_PORT: 8761
+    ports:
+      - 8761:8761
+  taskservice:
+    container_name: task-service
+    build: TaskService/
+    hostname: localhost
+    network_mode: host
+    ports:
+      - 9007:9007
+    depends_on:
+      - mongodbservice
+      - eurekaServer
+      - springcloudapigateway
+      - kanbanservice
+    restart: always
+
+

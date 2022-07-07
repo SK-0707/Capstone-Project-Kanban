@@ -1,0 +1,14 @@
+server:
+  port: ${KANBAN_SERVICE:9005}
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/kanban
+  application:
+    name: kanban-service
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    fetchRegistry: true
+    registerWithEureka: true

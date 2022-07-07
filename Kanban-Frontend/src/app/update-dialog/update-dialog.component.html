@@ -1,0 +1,57 @@
+<body>
+<div class="dialog-title">
+    <h1 mat-dialog-title>Update Task</h1> 
+  </div>
+  <mat-dialog-content [formGroup]="form" class="dialog-content">
+    <div class="form-group">
+    <mat-form-field>
+        <input matInput
+                placeholder="Title"
+               formControlName="taskName"
+               class="taskName" name="taskName">
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field>
+        <input matInput
+                placeholder="Description"
+               formControlName="description"
+               class="description" name="description">
+    </mat-form-field>
+  </div>
+  
+  <mat-form-field>
+    <mat-select placeholder="Select Delete Status"
+        formControlName="taskStatus" >
+        <mat-option value="">
+            </mat-option>
+        <mat-option value="ARCHIVE">
+              Delete</mat-option>  
+    </mat-select>
+  </mat-form-field>
+    <div class="form-group">
+      <mat-form-field>
+         <input matInput
+             placeholder="AssignTo"
+              formControlName="assignTo"
+               class="assignTo" name="assignTo">
+     </mat-form-field>
+   </div>
+   <div class="form-group">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Due date</mat-label>
+      <input matInput [matDatepicker]="picker" [min]="minDate" placeholder="Date"
+      formControlName="date"
+      class="date" name="date" >
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button class="mat-raised-button"(click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary"(click)="update()">Save</button>&nbsp;&nbsp;
+  </mat-dialog-actions>
+</body>
+  
+

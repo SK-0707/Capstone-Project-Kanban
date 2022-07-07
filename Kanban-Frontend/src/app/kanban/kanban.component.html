@@ -1,0 +1,62 @@
+<body style="background-image: url(../../assets/MainBackgroun.jpg);height: 100%;width: 100%;">
+
+  <mat-toolbar class="header">
+
+    <img src="./assets/kanbanLogo.png" alt="logo" style="width: 50px;height: 50px;padding-right: 10px;">
+    <span style="color: black;font-family: 'Great Vibes', cursive;">Kanban Board</span>
+    <div class="username" style="color: black;">
+      <mat-icon>account_circle</mat-icon>{{email}} |
+    </div>
+    <mat-icon class="logout" style="color:rgb(14, 13, 13) ;">logout</mat-icon><a
+      style="text-decoration:none;color: rgb(14, 13, 13);" (click)="logoutIn()">Logout</a>
+  </mat-toolbar>
+
+  <div class="page-container">
+    <div class="page-title">
+    </div>
+    <div>
+      <button style="margin-left: 30px;margin-top: 40px;position: fixed;" mat-raised-button
+        (click)="openDialogForNewKanban()">+ Add Kanban</button>
+    </div>
+    <br>
+    <p style="margin-left: 150px;color: black;margin-top: 100px;height: 10px  ;font-size: 50px;font-family: 'Rowdies', cursive;
+        ">Kanban Boards</p>
+    <br>
+    <div class="boardimage"><img src="../../assets/kb2.png" alt="prev"
+        style="margin-top: -15%;margin-left:-10%;height: 400px;"> </div>
+    <div class="board">
+      <table *ngFor="let kanban of kanbanList">
+        <tr>
+          <td style="width: 300px;padding-left: 30px;"><a routerLink="/kanbans/{{kanban.kanbanId}}">
+              <b> {{kanban.kanbanTitle}}</b>
+            </a></td>
+          <td style="width: 70px;"><a (click)="delete(kanban.kanbanId)"><img class="btn-img btn-img-combo"
+                src="../../assets/garbage.png" style="height: 31px;"></a></td>
+        </tr>
+      </table>
+    </div>
+    <br>
+  </div>
+  <div style="margin-top:5%;">
+    <div id="footer" style="text-align: center;">
+      <div style="border-top: 8px solid #254A73; width:99%;margin-left: 6%;margin-top: 8%;"></div>
+      <ul style="margin-left: 17%;">
+        <li><a href="index.html">TermsFeed © 2021 - 2022</a> |</li> Cookies Policy Terms of Use
+        <li><a target="_blank" routerLink="/privacy">Privacy Policy</a> |</li>
+        <li><a href="index2.html">Cookies</a> |</li>
+        <li><a href="index2.html">Terms of Use</a> </li>
+
+
+      </ul>
+      <div style=" margin-left: 75%;margin-top: -3%"><img src="../../assets/fb.png" style="height: 28px;"></div>
+      <!-- <div style=" margin-left: 87.5%;margin-top: -3%"><img src="../../assets/youtube.png" style="height: 29px;width: 32px;"></div>
+      <div style=" margin-left: 94.3%;margin-top: -3.1%"><img src="../../assets/linkedin.png" style="height: 29px;width: 32px;"></div> -->
+      <div style=" margin-left: 85.5%;margin-top: -2.4%"><img src="../../assets/insta.png" style="height: 29px;"></div>
+      <div style=" margin-left: 80.3%;margin-top: -2.3%"><img src="../../assets/twit.png" style="height: 27px;width: 32px;"></div>
+      <div style=" margin-left: 91.5%;margin-top: -2.5%"><img src="../../assets/youtube.png" style="height: 23px;width: 28px;"></div>
+      
+
+    </div>
+  </div>
+
+</body>

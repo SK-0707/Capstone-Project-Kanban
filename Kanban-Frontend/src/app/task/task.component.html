@@ -1,0 +1,116 @@
+<body style="background-image: url(../../assets/MainBackgroun.jpg);">
+  <br>  <br>  <br>  <br>  <br>
+  <div  class="example-button-row">
+    <button mat-raised-button color="accent" class="btn" (click)="openDialogForNewTask()">+ Add Task</button>
+  </div>
+  <ul style="list-style: none;display:flex; ">
+    <li class="s"> <h2 style="margin-bottom:-5px">TO DO</h2></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <li class="s1"> <h2 style="margin-bottom:-5px" >IN PROGRESS</h2></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <li class="s2"> <h2 style="margin-bottom:-5px">COMPLETED</h2></li>
+  </ul>
+  <!-- <div  class="s"></div> -->
+  <mat-toolbar class="header">
+    <img  src="./assets/kanbanLogo.png" alt="logo" style="width: 50px;height: 50px;padding-right: 10px;">
+    <a href="/kanban" style="text-decoration: none;"><span  style="color: black;font-family: 'Great Vibes', cursive;" >Kanban Board &nbsp;&nbsp;&nbsp;</span></a> <span class="header-title"></span>
+    <!-- <h1 >{{kanban?.kanbanTitle}}</h1> -->
+<div class="username" style="color: black; "><mat-icon>person</mat-icon>{{email}} | </div>
+<div class="with-icon">
+  <mat-icon class="logout" style="color:rgb(255, 0, 0) ;">power_settings_new</mat-icon><a style="text-decoration:none;color: rgb(14, 13, 13);" (click)="logoutIn()" >Logout</a>
+  
+</div>
+
+
+</mat-toolbar>
+  
+  
+ 
+  
+  <div class="kanban-board">
+    
+    <div class="list-container">
+      <!-- <h2 class="todo">To Do</h2> -->
+      <!-- <div class="s"> -->
+      <div
+      cdkDropList
+      id="todo"
+      [cdkDropListData]="todos"
+      [cdkDropListConnectedTo]="['inpro','done']"
+      class="board-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="sticky-note-todo"  *ngFor="let task of todos" cdkDrag
+        [style.background-color]="task.color"
+        (dblclick)="openTaskDialog($event)"
+        id="{{task.taskId}}">
+        <b>{{task.taskName}}</b><br>
+        {{task.assignTo}} <br>
+        Desc : {{task.description}}
+        <!-- <button mat-raised-button color="accent" class="btn1" style="margin-top: 50px;" (click)="update(task)">Update</button> -->
+        <a (click)="update(task)" style="cursor: pointer;"><img src="../../assets/icons8-update-left-rotation-48.png" height="25px"></a>
+      </div>
+    </div>
+    <!-- </div> -->
+  </div>
+  <div class="list-container">
+    <!-- <h2 class="inpro">In Progress</h2> -->
+    <div
+    cdkDropList
+    id="inpro"
+    [cdkDropListData]="inprogress"
+    [cdkDropListConnectedTo]="['todo', 'done']"
+    class="board-list"
+    (cdkDropListDropped)="drop($event)">
+      <div class="sticky-note-inprogress" *ngFor="let task of inprogress" cdkDrag
+      [style.background-color]="task.color"
+      (dblclick)="openTaskDialog($event)"
+        id="{{task.taskId}}">
+        <b>{{task.taskName}}</b>
+        <br>{{task.assignTo}}<br>
+        Desc : {{task.description}}
+        <!-- <button mat-raised-button color="accent" class="btn1" style="margin-top: 50px;" (click)="update(task)">Update</button> -->
+        <a (click)="update(task)" style="cursor: pointer;"><img src="../../assets/icons8-update-left-rotation-48.png" height="25px"></a>
+
+      </div>
+    </div>
+</div>
+  <div class="list-container">
+      <!-- <h2 class="done">Done</h2> -->
+      <div
+      cdkDropList
+      id="done"
+      [cdkDropListData]="dones"
+      [cdkDropListConnectedTo]="['todo', 'inpro']"
+      class="board-list"
+      (cdkDropListDropped)="drop($event)">
+        <div class="sticky-note-done" *ngFor="let task of dones" cdkDrag
+        [style.background-color]="task.color"
+        (dblclick)="openTaskDialog($event)"
+        id="{{task.taskId}}">
+        <b>{{task.taskName}}</b>
+         <br> {{task.assignTo}}  <br>
+          Desc : {{task.description}}
+          <!-- <button mat-raised-button color="accent" class="btn1" style="margin-top: 50px;" (click)="update(task)">Update</button> -->
+          <a (click)="update(task)" style="cursor: pointer;"><img src="../../assets/icons8-update-left-rotation-48.png" height="25px"></a>
+
+        </div>
+      </div>
+  </div>
+</div>
+
+
+<div id="footer" style="text-align: center;">
+  <div style="border-top: 8px solid #798491; width:99%;margin-left: 6%;"></div>
+  <ul style="margin-left: 17%;">
+    <li><a href="index.html">TermsFeed © 2021 - 2022</a> |</li>  Cookies Policy  Terms of Use
+    <li><a routerLink="/privacy">Privacy Policy</a> |</li>
+    <li><a href="index2.html">Cookies</a> |</li>
+    <li><a href="index2.html">Terms of Use</a> </li>
+  </ul>
+  <div style=" margin-left: 75%;margin-top: -3%"><img src="../../assets/fb.png" style="height: 28px;"></div>
+  <!-- <div style=" margin-left: 87.5%;margin-top: -3%"><img src="../../assets/youtube.png" style="height: 29px;width: 32px;"></div>
+  <div style=" margin-left: 94.3%;margin-top: -3.1%"><img src="../../assets/linkedin.png" style="height: 29px;width: 32px;"></div> -->
+  <div style=" margin-left: 85.5%;margin-top: -2.4%"><img src="../../assets/insta.png" style="height: 29px;"></div>
+  <div style=" margin-left: 80.3%;margin-top: -2.3%"><img src="../../assets/twit.png" style="height: 27px;width: 32px;"></div>
+  <div style=" margin-left: 91.5%;margin-top: -2.5%"><img src="../../assets/youtube.png" style="height: 23px;width: 28px;"></div>
+  
+</div>
+</body>

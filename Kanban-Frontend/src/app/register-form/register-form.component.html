@@ -1,0 +1,91 @@
+
+<body style="background-image: url(../../assets/MainBackgroun.jpg);height: 100%;width: 100%;">
+  <div class="topnav">
+    <img  src="./assets/kanbanLogo.png" alt="logo" style="width: 50px;margin-left: -89%;height: 50px;padding-right: 10px;">
+    <a  style="color: black;font-family: 'Great Vibes', cursive;margin-left: 80px;" routerLink="">Kanban Board</a>
+       <a style="color: black;" routerLink="/about">About</a>
+        <a style="color: black;margin-left: 60%;" routerLink="/login">Log In</a>
+        <a style="color: black;" routerLink="/register">Sign Up</a>
+    </div>
+  <div style="margin-left: 100px; ">
+   <img src="./assets/registerpage2.png" alt="Avatar"  style="width: 50%;">
+  </div>
+    <div>
+      <mat-card class="example-card">
+    <form  id="login-form" class="example-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="container" style="color: black;">
+          <h2><b>Sign Up</b></h2>
+         
+          <div class="form-group">
+          <label for="username" class="tcl"><b>Username*</b></label>
+          <input type="text" placeholder="username" name="username" id="username"  formControlName="username" class="form-control" >
+          <div *ngIf="!username?.valid && (username?.dirty ||username?.touched)">
+            <div style="color: red;" [hidden]="!username.errors?.['required']">
+            *username is required
+            </div>
+          </div>
+        </div>
+          <div class="form-group">
+          <label for="email" class="tcl"><b>Email-Id*</b></label>
+          <input type="text" placeholder="Enter Email-Id" name="email" id="email" class="form-control" formControlName="email">
+          <div *ngIf="(!email?.valid && (email?.dirty) ||email?.touched)">
+            <div style="color: red;" [hidden]="!email.errors?.['required']">
+            *for e.g abc@gmail.com
+            </div>
+            <div style="color: red;" [hidden]="!email.errors?.['email']">
+              *for e.g abc@gmail.com
+            </div>
+        </div>
+        </div>
+          <div class="form-group">
+          <label for="psw" class="tcl"><b>Password*</b></label>
+          <input type="password" placeholder="Enter Password*" name="password" id="password" class="form-control" formControlName="password">
+          <div *ngIf="!password?.valid && (password?.dirty ||password?.touched)">
+            <div style="color: red;" *ngIf="!password.errors?.['required']">
+                [password : minimum 8 characters]
+            </div>
+            <div style="color: red;" [hidden]="!password.errors?.['minLength']">
+              *Password length minimum 8 characters required
+            </div>
+        </div>
+        </div>
+          <button type="submit" class="registerbtn" [disabled]="!registerForm.valid">Sign Up</button>
+          <!-- <button type="submit" class="registerbtn" [disabled]="password.invalid === ''">Sign</button> -->
+        </div>
+        <div class="container signin" style="color: black;margin-left: 2px;margin-top: -5%;">
+          <p>Already have an account? <a routerLink="/login" style="color: rgba(97, 32, 23, 0.808);">Sign in</a>.</p>
+        </div>
+      </form>
+    </mat-card>
+    </div>
+    <div >
+      <div id="footer" style="text-align: center;margin-top: 3.1%;">
+        <div style="border-top: 8px solid #254A73; width:99%;margin-left: 6%;margin-top: 0%;"></div>
+        <ul style="margin-left: 17%;">
+          <li><a href="index.html">TermsFeed © 2021 - 2022</a> |</li>  Cookies Policy  Terms of Use
+          <li><a target="_blank" routerLink="/privacy">Privacy Policy</a> |</li>
+          <li><a href="index2.html">Cookies</a> |</li>
+          <li><a href="index2.html">Terms of Use</a> </li>
+          
+        </ul>
+
+
+        <div style=" margin-left: 75%;margin-top: -3%"><img src="../../assets/fb.png" style="height: 28px;"></div>
+        <!-- <div style=" margin-left: 87.5%;margin-top: -3%"><img src="../../assets/youtube.png" style="height: 29px;width: 32px;"></div>
+        <div style=" margin-left: 94.3%;margin-top: -3.1%"><img src="../../assets/linkedin.png" style="height: 29px;width: 32px;"></div> -->
+        <div style=" margin-left: 85.5%;margin-top: -2.4%"><img src="../../assets/insta.png" style="height: 29px;"></div>
+        <div style=" margin-left: 80.3%;margin-top: -2.3%"><img src="../../assets/twit.png" style="height: 27px;width: 32px;"></div>
+        <div style=" margin-left: 91.5%;margin-top: -2.5%"><img src="../../assets/youtube.png" style="height: 23px;width: 28px;"></div>
+        
+    
+        <!-- <div style=" margin-left: 75%;margin-top: -3%"><img src="../../assets/fb.png" style="height: 28px;"></div>
+        <div style=" margin-left: 80.5%;margin-top: -2.7%"><img src="../../assets/insta.png" style="height: 29px;"></div>
+        <div style=" margin-left: 87.5%;margin-top: -3%"><img src="../../assets/youtube.png" style="height: 29px;width: 32px;"></div>
+        <div style=" margin-left: 94.3%;margin-top: -3.1%"><img src="../../assets/linkedin.png" style="height: 29px;width: 32px;"></div>
+        <div style=" margin-left: 99.3%;margin-top: -2.5%"><img src="../../assets/twit.png" style="height: 27px;width: 32px;"></div>
+       -->
+       
+      </div>
+      </div>
+
+</body>
